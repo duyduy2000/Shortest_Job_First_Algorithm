@@ -13,6 +13,7 @@ object Color {
     val DarkGray = Color.DarkGray
     val DarkGrayAlpha70 = Color(0x77363636)
 
+    val Red = Color(red = 255, blue = 0, green = 0)
     val Yellow = Color.Yellow
     val Cyan = Color.Cyan
 

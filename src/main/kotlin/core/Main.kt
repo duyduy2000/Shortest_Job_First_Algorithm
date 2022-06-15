@@ -5,46 +5,46 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import domain.util.fakeProcessList1
 import presentation.screen.main.MainScreen
 import presentation.screen.process_list.ProcessListScreen
 import presentation.viewmodel.MainViewModel
 
 @Composable
-fun MainWindow(onClose: () -> Unit, title: String, viewModel: MainViewModel) {
+fun MainWindow(onClose: () -> Unit, title: String, mainViewModel: MainViewModel) {
     Window(
         onCloseRequest = onClose,
         title = title,
         state = WindowState(width = 1500.dp, height = 800.dp)
     ) {
-        MainScreen(viewModel = viewModel)
+        MainScreen(viewModel = mainViewModel)
     }
 }
 
 @Composable
-fun ProcessListWindow(onClose: () -> Unit, title: String, viewModel: MainViewModel) {
+fun ProcessListWindow(onClose: () -> Unit, title: String, mainViewModel: MainViewModel) {
     Window(
         onCloseRequest = onClose,
+        resizable = false,
         title = title,
         state = WindowState(width = 500.dp, height = 800.dp)
     ) {
-        ProcessListScreen(viewModel = viewModel)
+        ProcessListScreen(mainViewModel = mainViewModel)
     }
 }
 
 fun main() = application {
-    val viewModel = MainViewModel(processList = fakeProcessList1)
+    val mainViewModel = MainViewModel()
 
     MainWindow(
         onClose = ::exitApplication,
         title = "Shortest-Job-First Algorithm",
-        viewModel = viewModel
+        mainViewModel = mainViewModel
     )
 
     ProcessListWindow(
         onClose = ::exitApplication,
         title = "Process list",
-        viewModel = viewModel
+        mainViewModel = mainViewModel
     )
 
 }
